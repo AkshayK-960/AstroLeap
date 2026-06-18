@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://buyqxhtdwrn3l"]
+
+[ext_resource type="PackedScene" uid="uid://bwktcssqfyuye" path="res://player.tscn" id="1_0hol4"]
+[ext_resource type="Texture2D" uid="uid://6i0lto1c026x" path="res://Assets/grid.png" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://3qf03k4c67nk" path="res://game-camera.gd" id="3_epypp"]
+[ext_resource type="PackedScene" uid="uid://be3yt5uu2eca1" path="res://normal_platform.tscn" id="4_0hol4"]
+[ext_resource type="PackedScene" uid="uid://dx22jeh8q1sn6" path="res://icy_platform.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://c017342d313yn" path="res://fragile_platform.tscn" id="6_d21ai"]
+[ext_resource type="Script" uid="uid://c0txlmxxd4ol8" path="res://platforms.gd" id="7_d21ai"]
+[ext_resource type="Script" uid="uid://xmrn2gldikdi" path="res://score.gd" id="8_rj586"]
+[ext_resource type="Script" uid="uid://hfd24xhqmaik" path="res://killbrick.gd" id="9_4d7sh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(39, 686.5)
+
+[node name="Game" type="Node2D" unique_id=674772645]
+position = Vector2(228, 74)
+
+[node name="Player" parent="." unique_id=640966735 instance=ExtResource("1_0hol4")]
+unique_name_in_owner = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=439612689]
+show_behind_parent = true
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1000, 1000)
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D" unique_id=190831523]
+offset_left = -240.0
+offset_top = -360.0
+offset_right = 760.0
+offset_bottom = 640.0
+texture = ExtResource("2_0e48y")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="normal platform" parent="." unique_id=1534407697 instance=ExtResource("4_0hol4")]
+
+[node name="icy platform" parent="." unique_id=853726416 instance=ExtResource("5_kdubu")]
+position = Vector2(100, -200)
+
+[node name="fragile platform" parent="." unique_id=1366655059 instance=ExtResource("6_d21ai")]
+position = Vector2(-199, -300)
+
+[node name="Platforms" type="Node2D" parent="." unique_id=1753621645]
+script = ExtResource("7_d21ai")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1279240806]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("3_epypp")
+
+[node name="score" type="Label" parent="Camera2D" unique_id=1807742105]
+z_index = 1
+offset_left = -734.99994
+offset_top = -1225.0
+offset_right = -287.99994
+offset_bottom = -1086.0
+script = ExtResource("8_rj586")
+
+[node name="barriers" type="StaticBody2D" parent="Camera2D" unique_id=79857748]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/barriers" unique_id=1159615502]
+position = Vector2(-260, 8)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/barriers" unique_id=353789612]
+position = Vector2(260, 39.75)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Area2D" type="Area2D" parent="Camera2D" unique_id=30345414]
+script = ExtResource("9_4d7sh")
+
+[node name="Timer" type="Timer" parent="Camera2D/Area2D" unique_id=1776910751]
+wait_time = 0.5
+one_shot = true
