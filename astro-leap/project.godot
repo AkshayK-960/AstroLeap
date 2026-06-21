@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Astro Leap"
-run/main_scene="uid://buyqxhtdwrn3l"
+run/main_scene="uid://eaeml336ouul"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -27,6 +27,11 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 [global_group]
 
 platformer_platform=""
+Player=""
+
+[gui]
+
+theme/custom_font="uid://bd3fc0vnhemqk"
 
 [physics]
 

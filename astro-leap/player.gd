@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	if is_slippery:
 		
 			if direction:
+				#velocity.y = -50000 # alskdjf;laksdjflk;j
 				velocity.x = move_toward(velocity.x, direction * (max_speed), acceleration * delta * 1.15)
 			else:
 				velocity.x = move_toward(velocity.x, 0, (friction - 500) * delta)
@@ -23,6 +24,9 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x, direction * max_speed, acceleration * delta)
 			else:
 				velocity.x = move_toward(velocity.x, 0, friction * delta)
+	
+	
+	
 	
 	if is_on_floor():
 		var collision = get_last_slide_collision()
@@ -37,5 +41,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jumpHeight
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+@onready var player = get_node("../Player")
+func _process(delta: float) -> void:
+	var normalized_var = clamp(-player.position.y / 8000, 0.0, 1.0)
+	modulate.a = 2 - normalized_var

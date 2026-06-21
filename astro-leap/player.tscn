@@ -1,19 +1,22 @@
 [gd_scene format=3 uid="uid://bwktcssqfyuye"]
 
-[ext_resource type="Texture2D" uid="uid://ybfq43ewp10o" path="res://Assets/character.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://fcrwa4bans81" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://x118pb7r113s" path="res://Assets/hand-drawn-assets/Player.png" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
-radius = 15.0
-height = 60.0
+radius = 19.0
+height = 52.0
 
-[node name="Player" type="CharacterBody2D" unique_id=529835538]
+[node name="Player" type="CharacterBody2D" unique_id=529835538 groups=["Player"]]
 script = ExtResource("1_onrkg")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1165601662]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_4flbx")
+position = Vector2(-1, 4)
+rotation = 0.02403305
+scale = Vector2(0.12224939, 0.11358382)
+texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1095602290]
+position = Vector2(0, 4)
+rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_onrkg")
-debug_color = Color(0.9519823, 1.2513996e-06, 0.56338036, 0.41960785)

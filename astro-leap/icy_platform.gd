@@ -2,6 +2,8 @@ extends StaticBody2D
 
 @export_enum("Normal", "Icy", "Fragile") var platform_type: String = "Icy"
 
+func _ready() -> void:
+	remove_from_group("Player")
 
 func handle_touch(player):
 	if platform_type == "Fragile":

@@ -8,7 +8,7 @@ func _ready() -> void:
 	
 	
 	label_settings.font_size = 300
-	label_settings.font_color = Color(0.0, 0.0, 0.0, 1.0)
+	label_settings.font_color = Color(1.0, 1.0, 1.0, 1.0)
 
 var maxScore: int = 0
 func _process(_delta: float) -> void:

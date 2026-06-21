@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://eaeml336ouul"]
+
+[ext_resource type="Script" uid="uid://c4g326mg8eujm" path="res://play.gd" id="2_oyqm6"]
+[ext_resource type="Texture2D" uid="uid://d3ef6yiarl6i3" path="res://Assets/gridimage.png" id="3_3xoar"]
+[ext_resource type="Script" uid="uid://bpu5a3fstc04p" path="res://quitbutton.gd" id="3_kpexm"]
+[ext_resource type="Script" uid="uid://bskenaqmd2lj4" path="res://titlebackground.gd" id="4_3xoar"]
+
+[node name="Title" type="Node2D" unique_id=917597684]
+z_index = -20
+position = Vector2(223, 156)
+
+[node name="Button" type="Button" parent="." unique_id=814756589]
+offset_left = -90.0
+offset_top = 198.0
+offset_right = 107.0
+offset_bottom = 253.0
+theme_override_colors/font_hover_color = Color(0.4243709, 0.87540287, 1, 1)
+theme_override_font_sizes/font_size = 35
+text = "Play Game"
+script = ExtResource("2_oyqm6")
+
+[node name="Button2" type="Button" parent="." unique_id=399856453]
+offset_left = -90.0
+offset_top = 259.0
+offset_right = 107.0
+offset_bottom = 314.0
+theme_override_colors/font_hover_color = Color(1, 0.3830446, 0.26043218, 1)
+theme_override_font_sizes/font_size = 35
+text = "Quit"
+script = ExtResource("3_kpexm")
+
+[node name="Button3" type="Button" parent="." unique_id=1726487748]
+offset_left = -138.0
+offset_top = -67.0
+offset_right = 170.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 50
+text = "Astro Jump"
+flat = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=530125847]
+z_index = -50
+repeat_size = Vector2(1000, 1000)
+autoscroll = Vector2(0, 50)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D" unique_id=439572366]
+modulate = Color(0.101960786, 0.21176471, 0.3647059, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_3xoar")
+stretch_mode = 1
+script = ExtResource("4_3xoar")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
