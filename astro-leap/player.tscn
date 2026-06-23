@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fcrwa4bans81" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://x118pb7r113s" path="res://Assets/hand-drawn-assets/Player.png" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://4rjorv3togxr" path="res://Assets/jump-sound.mp3" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 radius = 19.0
@@ -20,3 +21,7 @@ texture = ExtResource("2_onrkg")
 position = Vector2(0, 4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=571860749]
+stream = ExtResource("3_i3pqv")
+volume_db = 8.851

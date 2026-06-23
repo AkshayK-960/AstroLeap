@@ -5,7 +5,10 @@ const acceleration = 1500
 const friction = 1000
 var is_slippery
 
+@onready var audio_player = $AudioStreamPlayer2D
+
 func _physics_process(delta: float) -> void:
+	var was_on_floor = is_on_floor()
 	if not is_on_floor():
 		velocity = velocity + get_gravity() * delta
 
@@ -39,6 +42,11 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		velocity.y = jumpHeight
+		
+		
+	
+	if is_on_floor() and not was_on_floor:
+		audio_player.play()
 
 
 @onready var player = get_node("../Player")

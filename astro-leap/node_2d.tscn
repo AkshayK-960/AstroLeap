@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dlic87bkfxh37" path="res://Assets/hand-drawn-assets/Star1.png" id="15_d2bti"]
 [ext_resource type="Texture2D" uid="uid://uij5tkejtxa3" path="res://Assets/hand-drawn-assets/Star2.png" id="16_ta5nu"]
 [ext_resource type="PackedScene" uid="uid://eaeml336ouul" path="res://title.tscn" id="17_flf07"]
+[ext_resource type="AudioStream" uid="uid://dujt5yv73dld" path="res://Assets/main_music.mp3" id="18_k73cj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
 size = Vector2(39, 686.5)
@@ -51,6 +52,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="icy platform" parent="." unique_id=853726416 instance=ExtResource("5_kdubu")]
 position = Vector2(100, -200)
+
+[node name="CollisionShape2D" parent="icy platform" index="0" unique_id=854059638]
+position = Vector2(9, 192)
 
 [node name="Sprite2D" parent="icy platform" index="1" unique_id=1103832097]
 position = Vector2(12.000008, 199)
@@ -178,6 +182,11 @@ expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Title" parent="." unique_id=917597684 instance=ExtResource("17_flf07")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=183934230]
+stream = ExtResource("18_k73cj")
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="Camera2D/Area2D" to="Camera2D/Area2D" method="_on_body_entered"]
 
