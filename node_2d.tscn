@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://buyqxhtdwrn3l"]
+
+[ext_resource type="PackedScene" uid="uid://bwktcssqfyuye" path="res://player.tscn" id="1_0hol4"]
+[ext_resource type="Script" uid="uid://b5cnnt838lkak" path="res://parallax_2d.gd" id="2_ir8iy"]
+[ext_resource type="Script" uid="uid://3qf03k4c67nk" path="res://game-camera.gd" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://d3ef6yiarl6i3" path="res://Assets/gridimage.png" id="3_ir8iy"]
+[ext_resource type="PackedScene" uid="uid://be3yt5uu2eca1" path="res://normal_platform.tscn" id="4_0hol4"]
+[ext_resource type="PackedScene" uid="uid://dx22jeh8q1sn6" path="res://icy_platform.tscn" id="5_kdubu"]
+[ext_resource type="PackedScene" uid="uid://c017342d313yn" path="res://fragile_platform.tscn" id="6_d21ai"]
+[ext_resource type="Script" uid="uid://c0txlmxxd4ol8" path="res://platforms.gd" id="7_d21ai"]
+[ext_resource type="Script" uid="uid://xmrn2gldikdi" path="res://score.gd" id="8_rj586"]
+[ext_resource type="Script" uid="uid://hfd24xhqmaik" path="res://killbrick.gd" id="9_4d7sh"]
+[ext_resource type="Script" uid="uid://b7k0k4dx4s2n" path="res://skyspawner.gd" id="11_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://cskqvapoolfwn" path="res://Assets/hand-drawn-assets/Planet.png" id="13_0h7mo"]
+[ext_resource type="Texture2D" uid="uid://dqd7y3mgc7tsc" path="res://Assets/hand-drawn-assets/Asteroid.png" id="13_d2bti"]
+[ext_resource type="Texture2D" uid="uid://dktc44o6dfjjn" path="res://Assets/hand-drawn-assets/Pyramid.png" id="14_nr8wp"]
+[ext_resource type="Texture2D" uid="uid://dlic87bkfxh37" path="res://Assets/hand-drawn-assets/Star1.png" id="15_d2bti"]
+[ext_resource type="Texture2D" uid="uid://uij5tkejtxa3" path="res://Assets/hand-drawn-assets/Star2.png" id="16_ta5nu"]
+[ext_resource type="PackedScene" uid="uid://eaeml336ouul" path="res://title.tscn" id="17_flf07"]
+[ext_resource type="AudioStream" uid="uid://dujt5yv73dld" path="res://Assets/main_music.mp3" id="18_k73cj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj586"]
+size = Vector2(39, 686.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d7sh"]
+size = Vector2(3360, 285)
+
+[node name="Game" type="Node2D" unique_id=674772645]
+position = Vector2(228, 74)
+
+[node name="Player" parent="." unique_id=640966735 instance=ExtResource("1_0hol4")]
+unique_name_in_owner = true
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=439612689]
+show_behind_parent = true
+z_index = -2
+scroll_scale = Vector2(0.1, 0.1)
+scroll_offset = Vector2(-180, -166)
+repeat_size = Vector2(1000, 1000)
+script = ExtResource("2_ir8iy")
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D" unique_id=190831523]
+offset_left = -240.0
+offset_top = -360.0
+offset_right = 760.0
+offset_bottom = 640.0
+texture = ExtResource("3_ir8iy")
+stretch_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="normal platform" parent="." unique_id=1534407697 instance=ExtResource("4_0hol4")]
+
+[node name="icy platform" parent="." unique_id=853726416 instance=ExtResource("5_kdubu")]
+position = Vector2(100, -200)
+
+[node name="CollisionShape2D" parent="icy platform" index="0" unique_id=854059638]
+position = Vector2(9, 192)
+
+[node name="Sprite2D" parent="icy platform" index="1" unique_id=1103832097]
+position = Vector2(12.000008, 199)
+
+[node name="fragile platform" parent="." unique_id=1366655059 instance=ExtResource("6_d21ai")]
+position = Vector2(-132, -92)
+
+[node name="Platforms" type="Node2D" parent="." unique_id=1753621645]
+script = ExtResource("7_d21ai")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1279240806]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("3_epypp")
+
+[node name="score" type="Label" parent="Camera2D" unique_id=1807742105]
+unique_name_in_owner = true
+z_index = 1
+offset_left = -785.0
+offset_top = -1710.0
+offset_right = 829.99976
+offset_bottom = -675.0001
+horizontal_alignment = 1
+script = ExtResource("8_rj586")
+
+[node name="barriers" type="StaticBody2D" parent="Camera2D" unique_id=79857748]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/barriers" unique_id=1159615502]
+position = Vector2(-260, 8)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Camera2D/barriers" unique_id=353789612]
+position = Vector2(260, 39.75)
+shape = SubResource("RectangleShape2D_rj586")
+
+[node name="Area2D" type="Area2D" parent="Camera2D" unique_id=2102354171]
+script = ExtResource("9_4d7sh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D" unique_id=265751547]
+position = Vector2(-65.00003, 2244.9998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_4d7sh")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1963752469]
+visibility_layer = 2
+z_index = -1
+script = ExtResource("11_0h7mo")
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D" unique_id=1419258902]
+scroll_scale = Vector2(0.4, 0.4)
+scroll_offset = Vector2(0, -200)
+repeat_size = Vector2(0, 1500)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Parallax2D" unique_id=1803546484]
+offset_left = -47.0
+offset_top = 3.0
+offset_right = 12.261719
+offset_bottom = 158.76068
+rotation = 0.84209317
+texture = ExtResource("13_d2bti")
+expand_mode = 1
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D" unique_id=1732537266]
+scroll_scale = Vector2(0.2, 0.2)
+scroll_offset = Vector2(0, 250)
+repeat_size = Vector2(0, 2500)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Parallax2D2" unique_id=214885469]
+offset_left = 236.00003
+offset_top = -307.0
+offset_right = 301.2066
+offset_bottom = -238.38623
+rotation = 1.3232086
+texture = ExtResource("13_0h7mo")
+expand_mode = 1
+
+[node name="Parallax2D3" type="Parallax2D" parent="Node2D" unique_id=185993931]
+scroll_scale = Vector2(0.15, 0.15)
+scroll_offset = Vector2(-350, 500)
+repeat_size = Vector2(0, 1500)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Parallax2D3" unique_id=909418731]
+offset_left = 236.00003
+offset_top = -307.0
+offset_right = 301.2066
+offset_bottom = -238.38623
+rotation = 1.3232086
+texture = ExtResource("14_nr8wp")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Parallax2D4" type="Parallax2D" parent="Node2D" unique_id=764063773]
+scroll_scale = Vector2(0.25, 0.25)
+scroll_offset = Vector2(-250, 500)
+repeat_size = Vector2(0, 1500)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Parallax2D4" unique_id=1013704841]
+offset_left = 236.00003
+offset_top = -307.0
+offset_right = 301.2066
+offset_bottom = -238.38623
+rotation = 1.3232086
+texture = ExtResource("15_d2bti")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Parallax2D5" type="Parallax2D" parent="Node2D" unique_id=1814561314]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-65, 500)
+repeat_size = Vector2(0, 1500)
+repeat_times = 2
+
+[node name="TextureRect" type="TextureRect" parent="Node2D/Parallax2D5" unique_id=890848768]
+offset_left = 236.00003
+offset_top = -307.0
+offset_right = 301.2066
+offset_bottom = -238.38623
+rotation = 1.3232086
+texture = ExtResource("16_ta5nu")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" parent="." unique_id=917597684 instance=ExtResource("17_flf07")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=183934230]
+stream = ExtResource("18_k73cj")
+volume_db = -9.563
+pitch_scale = 0.9
+autoplay = true
+parameters/looping = true
+
+[connection signal="body_entered" from="Camera2D/Area2D" to="Camera2D/Area2D" method="_on_body_entered"]
+
+[editable path="icy platform"]
